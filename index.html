@@ -1,0 +1,46 @@
+<!-- The HTML structure for the button -->
+<button id="flashlightButton">Flashlight</button>
+<head>
+    <style>
+        /* The CSS styles for the button */
+#flashlightButton {
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+    </style>
+
+    <script>
+        // The JavaScript code for the button
+
+// Get a reference to the button
+var flashlightButton = document.getElementById('flashlightButton');
+
+// Check if the flashlight is supported
+if ('flashlight' in navigator) {
+  // Handle the button click
+  flashlightButton.addEventListener('click', function() {
+    // Toggle the flashlight every 500ms
+    setInterval(function() {
+      navigator.flashlight.toggle();
+    }, 500);
+  });
+} else {
+  // Show an error message if the flashlight is not supported
+  flashlightButton.textContent = 'Flashlight not supported';
+}
+// Get a reference to the timer
+var timer = setInterval(function() {
+  navigator.flashlight.toggle();
+}, 500);
+
+// Stop the timer when the button is clicked again
+flashlightButton.addEventListener('click', function() {
+  clearInterval(timer);
+});
+
+    </script>
+</head>
